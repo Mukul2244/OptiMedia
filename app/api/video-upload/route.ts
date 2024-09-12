@@ -13,8 +13,7 @@ cloudinary.config({
     cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET,
-    timeout: 120000  // Increase timeout to 60 seconds
-});
+  });
 
 interface CloudinaryUploadResult {
     public_id: string;
@@ -66,8 +65,7 @@ export async function POST(request: NextRequest) {
                         transformation: [
                             { quality: "auto", fetch_format: "mp4" },
                         ],
-                        timeout: 120000,
-                    },
+                                          },
                     (error, result) => {
                         if (error) reject(error);
                         else resolve(result as CloudinaryUploadResult);
