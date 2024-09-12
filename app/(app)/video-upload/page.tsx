@@ -18,7 +18,7 @@ const VideoUpload = () => {
 
   const handleSubmit = async(e:React.FormEvent)=>{
     e.preventDefault();
-    if(!file) return;
+    if(!file) return;    
 
     if(file.size>MAX_FILE_SIZE){
       // Todo : add notifications
@@ -34,10 +34,12 @@ const VideoUpload = () => {
     formData.append("originalSize",file.size.toString())
 
     try {
-     const response= await axios.post("/api/video-upload",formData)
+      await axios.post("/api/video-upload",formData)
       // check for 200 response
+      router.push("/")
+      
     } catch (error) {
-      console.log("Error in uploading the video",error)
+      console.log("Error in uploading the video...!!!",error)
     }finally{
       setIsUploading(false)
 
@@ -45,6 +47,7 @@ const VideoUpload = () => {
 
 
   }
+
   return (
     <div className="container mx-auto p-4">
           <h1 className="text-2xl font-bold mb-4">Upload Video</h1>
